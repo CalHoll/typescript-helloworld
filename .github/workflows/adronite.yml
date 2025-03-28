@@ -16,11 +16,20 @@ jobs:
           
       - name: Submit to Adronite
         run: |
-          curl -X POST "https://adronite.ai/api/v1/project/add_github_revision/" \
-            -H "Content-Type: application/json" \
+          set -euo pipefail  # fail on error, undefined var, pipe failure
+      
+          # Send submission
+          RESPONSE=$(curl -s -X POST "https://k8s-default-nextjs-a5450415b6-115226263.us-west-2.elb.amazonaws.com/api/v1/project/add_github_revision/" \
+            -k -H "Content-Type: application/json" \
             -H "Authorization: Api-Key ${{ secrets.ADRONITE_API_KEY }}" \
             -d '{
               "project_id": "id_br8bmz9csks96gnj",
               "commit": "${{ github.sha }}",
               "branch": "${{ github.ref_name }}"
-            }'
+            }')
+      
+          # Validate response status using jq
+          if [ "$(echo "$RESPONSE" | jq -r '.status')" != "success" ]; then
+            echo "Submission failed: $RESPONSE" >&2
+            exit 1
+          fi
