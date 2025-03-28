@@ -1,0 +1,26 @@
+name: Adronite CI/CD Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  adronite-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Submit to Adronite
+        run: |
+          curl -X POST "https://adronite.ai/api/v1/project/add_github_revision/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Api-Key ${{ secrets.ADRONITE_API_KEY }}" \
+            -d '{
+              "project_id": "id_e3394sa2p9qesaga",
+              "commit": "${{ github.sha }}",
+              "branch": "${{ github.ref_name }}"
+            }'
