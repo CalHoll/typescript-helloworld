@@ -15,7 +15,7 @@ jobs:
       - name: Submit to Adronite
         run: |
           set -euo pipefail  # fail on error, undefined var, pipe failure
-          RESPONSE=$(curl -s -X POST "https://adronite.ai/api/v1/project/add_github_revision/" \
+          RESPONSE=$(curl -s -X POST "https://k8s-default-nextjs-a5450415b6-115226263.us-west-2.elb.amazonaws.com/api/v1/project/add_github_revision/" \
             -H "Content-Type: application/json" \
             -H "Authorization: Api-Key ${{ secrets.ADRONITE_API_KEY }}" \
             -d '{
