@@ -1,11 +1,11 @@
-name: Adronite CI/CD Integration
+name: Adronite CI/CD Integration - Staging
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  adronite-analysis:
+  adronite-analysis-staging:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
