@@ -2,7 +2,7 @@ name: Adronite CI/CD Integration
 
 on:
   push:
-    branches: [ main ]
+    branches: [ sandbox ]
 
 jobs:
   adronite-analysis:
