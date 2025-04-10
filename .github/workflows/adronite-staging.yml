@@ -2,7 +2,7 @@ name: Adronite CI/CD Integration - Staging
 
 on:
   push:
-    branches: [ main ]
+    branches: [ staging ]
 
 jobs:
   adronite-analysis-staging:
