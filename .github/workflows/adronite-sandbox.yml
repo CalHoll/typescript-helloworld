@@ -1,4 +1,4 @@
-name: Adronite CI/CD Integration - Staging
+name: Adronite CI/CD Integration - Sandbox
 
 on:
   push:
