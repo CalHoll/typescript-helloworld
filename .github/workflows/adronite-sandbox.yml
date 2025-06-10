@@ -36,7 +36,13 @@ jobs:
               "branch": "${{ github.ref_name }}"
             }')
           
-          if [ "$(echo "$RESPONSE" | jq -r '.status')" != "success" ]; then
-            echo "Submission failed: $RESPONSE" >&2
+          # check both responses
+          if [ "$(echo "$RESPONSE_1" | jq -r '.status')" != "success" ]; then
+            echo "Submission to first sandbox failed: $RESPONSE_1" >&2
+            exit 1
+          fi
+      
+          if [ "$(echo "$RESPONSE_2_CALHOLL_ADMIN_AT_LOCAL" | jq -r '.status')" != "success" ]; then
+            echo "Submission to second sandbox failed: $RESPONSE_2_CALHOLL_ADMIN_AT_LOCAL" >&2
             exit 1
           fi
