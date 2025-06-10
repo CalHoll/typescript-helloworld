@@ -15,11 +15,21 @@ jobs:
       - name: Submit to Adronite
         run: |
           set -euo pipefail  # fail on error, undefined var, pipe failure
-          RESPONSE=$(curl -s -X POST "https://k8s-default-nextjs-a5450415b6-115226263.us-west-2.elb.amazonaws.com/api/v1/project/add_github_revision/" \
+          RESPONSE_1=$(curl -s -X POST "https://k8s-default-nextjs-a5450415b6-115226263.us-west-2.elb.amazonaws.com/api/v1/project/add_github_revision/" \
             -k -H "Content-Type: application/json" \
             -H "Authorization: Api-Key ${{ secrets.ADRONITE_API_KEY_SANDBOX }}" \
             -d '{
               "project_id": "id_wznp22b95u5htd76",
+              "commit": "${{ github.sha }}",
+              "branch": "${{ github.ref_name }}"
+            }')
+
+          # ADDED THIS MANUALLY FOR admin@local user on sandbox test
+          RESPONSE_2_CALHOLL_ADMIN_AT_LOCAL=$(curl -s -X POST "https://adronite.ai/api/v1/project/add_github_revision/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Api-Key ${{ secrets.ADRONITE_API_KEY_SANDBOX_2 }}" \
+            -d '{
+              "project_id": "id_rcyvxqpkk32vrdnx",
               "commit": "${{ github.sha }}",
               "branch": "${{ github.ref_name }}"
             }')
