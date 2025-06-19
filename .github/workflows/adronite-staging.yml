@@ -19,7 +19,7 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Authorization: Api-Key ${{ secrets.ADRONITE_API_KEY_STAGING }}" \
             -d '{
-              "project_id": "id_w6y6zepdbjnpx6wy",
+              "project_id": "id_6rawvmzf4rhrc8dc",
               "commit": "${{ github.sha }}",
               "branch": "${{ github.ref_name }}"
             }')
