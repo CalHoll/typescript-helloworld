@@ -7,3 +7,5 @@ console.log("...");
 console.log("TEST!");
 console.log("...");
 console.log("TEST FOR SECURITY-SCAN WORK!");
+console.log("...");
+console.log("TEST FOR GH ACTION TRIGGER!");
