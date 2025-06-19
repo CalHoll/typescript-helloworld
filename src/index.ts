@@ -5,3 +5,5 @@ console.log("...");
 console.log("Hello again!");
 console.log("...");
 console.log("TEST!");
+console.log("...");
+console.log("TEST FOR SECURITY-SCAN WORK!");
